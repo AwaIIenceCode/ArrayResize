@@ -35,7 +35,7 @@ class MyClass
     {
         Console.Write("Enter the number of elements by which you want to increase the array -> ");
         
-        if(!int.TryParse(Console.ReadLine(), out int numberForIncrease)) { Console.WriteLine("Enter the number!"); return;}
+        if(!int.TryParse(Console.ReadLine(), out int numberForIncrease) || numberForIncrease <= 0 ) { Console.WriteLine("Enter the positive number!"); return;}
 
         Random rnd = new Random();
         
@@ -73,9 +73,10 @@ class MyClass
         if(!int.TryParse(Console.ReadLine(), out int numberForReduction) || numberForReduction > mainArray.Length || numberForReduction < 0) 
         { Console.WriteLine($"Must be number smaller or similar than length mainArray {mainArray.Length}"); return; }
         
+        if (mainArray.Length - numberForReduction < 0) { Console.WriteLine("Array cannot be negative!"); return; }
+        
         Array.Resize(ref mainArray, mainArray.Length - numberForReduction);
     }
-    
     
     static void Main()
     {
@@ -89,8 +90,6 @@ class MyClass
             Console.WriteLine("\n\n1 - for showing full array" +
                               "\n2 - for call ArrayUp function" +
                               "\n3 - for call ArrayDown function" +
-                              "\n4 - " +
-                              "\n5 - " +
                               "\nWrite \"Exit\" for exit the program");
             
             Console.Write("\nEnter your choice -> ");
@@ -100,27 +99,21 @@ class MyClass
             switch (userChoice)
             {
                 case "1":
-                { ShowArray(mainArray); break; }
+                { ShowArray(mainArray); ShowArray(mainArray); break; }
                 
                 case "2":
                 { ResizeUp(ref mainArray); ShowArray(mainArray); break;}
                 
                 case "3":
-                { ResizeDown(ref mainArray); ShowArray(mainArray); break;}
-                
-                case "4":
-                { break;}
-                
-                case "5":
-                { break;}
+                { ResizeDown(ref mainArray); break;}
                 
                 case "exit":
                 { return; }
-                
+
                 default:
-                    Console.WriteLine("Try again..."); break;
+                { Console.WriteLine("Try again..."); break; }
+                  
             }
         }
-
     }
 }
