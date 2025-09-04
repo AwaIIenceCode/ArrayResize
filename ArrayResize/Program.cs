@@ -39,20 +39,28 @@ class MyClass
 
         Random rnd = new Random();
         
-        int[] IncreaseArr = new int[numberForIncrease];
-        
-        for (int i = 0; i < numberForIncrease; i++)
+        // int[] IncreaseArr = new int[numberForIncrease];
+        //
+        // for (int i = 0; i < numberForIncrease; i++)
+        // {
+        //     IncreaseArr[i] = rnd.Next(-21, 21);
+        // }
+        //
+        // int tempArraySize = mainArray.Length + IncreaseArr.Length;
+        // int[] tempArr = new int[tempArraySize];
+        //
+        // Array.Copy(mainArray,0,tempArr,0,mainArray.Length);
+        // Array.Copy(IncreaseArr,0,tempArr, mainArray.Length, IncreaseArr.Length);
+        //
+        // mainArray = tempArr;
+
+        int oldLength = mainArray.Length;
+        Array.Resize(ref mainArray, mainArray.Length + numberForIncrease);
+
+        for (int i = oldLength; i < mainArray.Length; i++)
         {
-            IncreaseArr[i] = rnd.Next(-21, 21);
+            mainArray[i] = rnd.Next(-21, 21);
         }
-        
-        int tempArraySize = mainArray.Length + IncreaseArr.Length;
-        int[] tempArr = new int[tempArraySize];
-
-        Array.Copy(mainArray,0,tempArr,0,mainArray.Length);
-        Array.Copy(IncreaseArr,0,tempArr, mainArray.Length, IncreaseArr.Length);
-
-        mainArray = tempArr;
     }
     
     /// <summary>
