@@ -66,12 +66,14 @@ class MyClass
     /// <summary>
     /// method for reducing the size of an array
     /// </summary>
-    static void ResizeDown(int[] mainArray)
+    static void ResizeDown(ref int[] mainArray)
     {
         Console.Write("Enter the number of elements by which you want to reduction the array -> ");
         
-        if(!int.TryParse(Console.ReadLine(), out int numberForReduction) && numberForReduction > mainArray.Length) 
+        if(!int.TryParse(Console.ReadLine(), out int numberForReduction) || numberForReduction > mainArray.Length || numberForReduction < 0) 
         { Console.WriteLine($"Must be number smaller or similar than length mainArray {mainArray.Length}"); return; }
+        
+        Array.Resize(ref mainArray, mainArray.Length - numberForReduction);
     }
     
     
@@ -104,7 +106,7 @@ class MyClass
                 { ResizeUp(ref mainArray); ShowArray(mainArray); break;}
                 
                 case "3":
-                { ResizeDown(mainArray); break;}
+                { ResizeDown(ref mainArray); ShowArray(mainArray); break;}
                 
                 case "4":
                 { break;}
